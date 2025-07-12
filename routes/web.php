@@ -3,6 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SertifikatController;
+use Illuminate\Support\Facades\DB;
+
+Route::get('/cek-db', function () {
+    try {
+        DB::connection()->getPdo();
+        return "✅ Database terkoneksi!";
+    } catch (\Exception $e) {
+        return "❌ Gagal konek ke database: " . $e->getMessage();
+    }
+});
 
 /*
 |--------------------------------------------------------------------------
